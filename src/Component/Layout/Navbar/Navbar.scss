@@ -15,4 +15,25 @@
             background: red;
         }
     }
+
+    &__skin-header {
+        margin-top: 50px;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    &__skin-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__skin {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+
+        &--active {
+            border: 5px red solid;
+        }
+    }
 }

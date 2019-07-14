@@ -6,6 +6,7 @@ import Group from "./Group/Group";
 import Navbar from './Navbar/Navbar'
 import { group } from '../../Module/GroupList';
 import { debounce } from 'lodash'
+import { emojiArray } from '../../Module/test'
 
 const refs = group.reduce((acc, group) => {
     acc[group] = createRef();
@@ -15,7 +16,7 @@ const refs = group.reduce((acc, group) => {
 
 
 const Layout = () => {
-
+    // console.log(group)
     const [scroll, updateScroll] = useState('');
 
 
@@ -25,6 +26,7 @@ const Layout = () => {
             block: 'start',
         });
     }
+
 
     const scrollHandler = useCallback(
         () => {

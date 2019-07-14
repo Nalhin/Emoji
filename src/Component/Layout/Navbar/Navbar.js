@@ -3,12 +3,16 @@ import './Navbar.scss';
 import { group } from '../../../Module/GroupList';
 import { skinColor } from '../../../Module/skinColor';
 import { connect } from 'react-redux';
-import { setSkin } from '../../../Module/actions/skinColor'
+import { setSkin } from '../../../Module/actions/skinColor';
+import { setSearch } from '../../../Module/actions/search';
 
-const Navbar = ({ click, scroll, setSkin }) => {
+const Navbar = ({ click, scroll, setSkin, skin, setSearch }) => {
 
     return (
         <div className="navbar">
+            <div>
+                <input onChange={setSearch}></input>
+            </div>
             {group.map((group, index) =>
 
                 <div
@@ -19,16 +23,22 @@ const Navbar = ({ click, scroll, setSkin }) => {
                     {group}
                 </div>
             )}
-            <div>
+            <div className="navbar__skin-container">
+                <h1 className="navbar__skin-header">Skin Colors</h1>
                 {
-                    skinColor.map(skin =>
+                    skinColor.map(element =>
 
-                        <div onClick={setSkin.bind(this, skin)} style={{ background: skin.color }} key={skin.name}>
-                            {skin.name}
+                        <div
+                            className={element.name === skin.name ? "navbar__skin navbar__skin--active" : 'navbar__skin'}
+                            onClick={setSkin.bind(this, element)}
+                            style={{ background: element.color }}
+                            key={element.name}>
+
                         </div>
                     )
                 }
             </div>
+            <p>Emoji Data Version: 12.0</p>
         </div >
     )
 };
@@ -41,6 +51,10 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setSkin: (skin) => {
             dispatch(setSkin(skin));
+        },
+        setSearch: (event) => {
+            console.log(event.target.value)
+            dispatch(setSearch(event.target.value));
         }
     }
 }

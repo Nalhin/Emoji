@@ -5,13 +5,15 @@ import { skinColor } from '../../../Module/skinColor';
 import { connect } from 'react-redux';
 import { setSkin } from '../../../Module/actions/skinColor';
 import { setSearch } from '../../../Module/actions/search';
+import { debounce } from 'lodash';
 
 const Navbar = ({ click, scroll, setSkin, skin, setSearch }) => {
+
 
     return (
         <div className="navbar">
             <div>
-                <input onChange={setSearch}></input>
+                <input onChange={xd}></input>
             </div>
             {group.map((group, index) =>
 
@@ -53,7 +55,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(setSkin(skin));
         },
         setSearch: (event) => {
-            console.log(event.target.value)
+
             dispatch(setSearch(event.target.value));
         }
     }

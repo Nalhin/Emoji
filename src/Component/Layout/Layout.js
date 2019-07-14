@@ -7,6 +7,7 @@ import Navbar from './Navbar/Navbar'
 import { group } from '../../Module/GroupList';
 import { debounce } from 'lodash'
 import { emojiArray } from '../../Module/test'
+import { connect } from 'react-redux';
 
 const refs = group.reduce((acc, group) => {
     acc[group] = createRef();
@@ -15,7 +16,7 @@ const refs = group.reduce((acc, group) => {
 
 
 
-const Layout = () => {
+const Layout = ({ search }) => {
     // console.log(group)
     const [scroll, updateScroll] = useState('');
 
@@ -31,7 +32,7 @@ const Layout = () => {
     const scrollHandler = useCallback(
         () => {
             const findClosest = ((element) => {
-                return refs[element].current.offsetTop + refs[element].current.offsetHeight - 10 > window.pageYOffset
+                return refs[element].current.offsetTop + refs[element].current.offsetHeight > window.pageYOffset
             })
             updateScroll(group.find(findClosest))
         },
@@ -50,16 +51,27 @@ const Layout = () => {
         <div className="layout" >
             <Navbar click={handleClick} scroll={scroll}></Navbar>
 
-            {group.map(group => (
-                <div ref={refs[group]} key={group} >
-                    <Group key={group} group={group} className="layout__groups" />
+            {emojiArray.map((row, index) => (
+
+                < div ref={refs[group[index]]} key={group[index]} >
+                    {
+                        row.find(emoji => emoji.name.includes(search)) ?
+                            <Group key={group[index]} group={group[index]} row={row} className="layout__groups" />
+                            : null
+                    }
                 </div>
+
             ))}
 
         </div>
 
     );
 };
+const mapStateToProps = (state) => {
+
+    return { search: state.search };
+}
+
+export default connect(mapStateToProps)(Layout)
 
 
-export default Layout;

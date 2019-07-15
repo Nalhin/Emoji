@@ -1,13 +1,12 @@
 import { SET_SEARCH } from '../actions/actionTypes';
 
-
-const skinColorReducer = (state = "", action) => {
-    switch (action.type) {
-        case SET_SEARCH:
-            return action.search;
-        default:
-            return state;
-    }
-}
+const skinColorReducer = (state = '', action) => {
+  switch (action.type) {
+    case SET_SEARCH:
+      return action.search;
+    default:
+      return state;
+  }
+};
 
 export default skinColorReducer;

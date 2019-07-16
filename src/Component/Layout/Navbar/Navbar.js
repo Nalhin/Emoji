@@ -11,7 +11,7 @@ const Navbar = ({ click, scroll, setSkin, skin, setSearch }) => {
 
     const debouncedUpdate = debounce(value => {
         setSearch(value);
-    }, 300);
+    }, 150);
 
     const searchUpdate = useCallback(
         (event) => {

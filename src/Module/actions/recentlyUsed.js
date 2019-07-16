@@ -1,4 +1,4 @@
-import { GET_RECENTLY_USED, ADD_RECENTLY_USED } from './actionTypes';
+import { GET_RECENTLY_USED, ADD_RECENTLY_USED, DELETE_RECENTLY_USED } from './actionTypes';
 
 export const getRecentlyUsed = recentlyUsed => ({
   type: GET_RECENTLY_USED,
@@ -8,4 +8,8 @@ export const getRecentlyUsed = recentlyUsed => ({
 export const addRecentlyUsed = recentlyUsed => ({
   type: ADD_RECENTLY_USED,
   recentlyUsed: recentlyUsed,
+})
+
+export const deleteRecentlyUsed = () => ({
+  type: DELETE_RECENTLY_USED,
 })

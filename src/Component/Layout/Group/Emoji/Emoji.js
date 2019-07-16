@@ -18,7 +18,6 @@ const Emoji = ({ emoji, name, skinChange, skin, addRecentlyUsedEmoji }) => {
       const localEmoji = localStorage.getItem('emoji');
       const localEmojiArray = (localEmoji) ? JSON.parse(localEmoji) : [];
       localStorage.setItem('emoji', JSON.stringify([showEmoji, ...localEmojiArray]));
-
       addRecentlyUsedEmoji(showEmoji);
     },
     [showEmoji, addRecentlyUsedEmoji],
@@ -41,7 +40,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addRecentlyUsedEmoji: recently => {
-
       dispatch(addRecentlyUsed(recently));
     },
 

@@ -1,7 +1,14 @@
 .recently-used {
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  text-align: center;
-  width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    // flex-direction: column;
+    margin: 0 auto;
+    width: 20%;
+    overflow: auto;
+    flex-flow: column wrap;
+    text-align: center;
+    flex-wrap: nowrap;
+    &__emoji {
+        cursor: pointer;
+    }
 }

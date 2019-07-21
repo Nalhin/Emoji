@@ -1,14 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './Group.scss';
-import Emoji from './Emoji/Emoji';
-// import emojiData from '../../../emoji.json';
+import Emoji from './Emoji/EmojiContainer';
 
 const Group = ({ group, search, row }) => {
   return (
-    <div className="group">
-      <h1>{group}</h1>
-      <div className="emoji-group">
+    <div className="emoji-group">
+      <h1 className="emoji-group__title">{group}</h1>
+      <div className="emoji-group__emoji">
         {row.map((emoji, index) =>
           emoji.name.includes(search) ? (
             <Emoji
@@ -24,8 +23,13 @@ const Group = ({ group, search, row }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return { search: state.search };
-};
+Group.propTypes = {
+  group: PropTypes.string.isRequired,
+  search: PropTypes.string,
+  row: PropTypes.arrayOf(PropTypes.shape({
+    emoji: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
+  }.isRequired)).isRequired
+}
 
-export default connect(mapStateToProps)(Group);
+export default Group;

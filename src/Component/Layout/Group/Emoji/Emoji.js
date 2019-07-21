@@ -1,50 +1,45 @@
-import React, { useCallback } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import './Emoji.scss';
-import { connect } from 'react-redux';
-import { addRecentlyUsed } from '../../../../Module/actions/recentlyUsed';
+import { withFilteredEmoji } from '../../../hoc/withFilteredEmoji';
+
+const Emoji = ({ emoji, name, addRecentlyUsedEmoji, setCopyEmoji }) => {
 
 
-const Emoji = ({ emoji, name, skinChange, skin, addRecentlyUsedEmoji }) => {
-
-  const showEmoji = skinChange
-    ? emoji.slice(0, 2) + skin.unicode + emoji.slice(2)
-    : emoji;
-
-
-  const handleClick = useCallback(
+  const handleClick = React.useCallback(
     () => {
-
       const localEmoji = localStorage.getItem('emoji');
       const localEmojiArray = (localEmoji) ? JSON.parse(localEmoji) : [];
-      localStorage.setItem('emoji', JSON.stringify([showEmoji, ...localEmojiArray]));
-      addRecentlyUsedEmoji(showEmoji);
+      localStorage.setItem('emoji', JSON.stringify([emoji, ...localEmojiArray]));
+      addRecentlyUsedEmoji(emoji);
     },
-    [showEmoji, addRecentlyUsedEmoji],
+    [emoji, addRecentlyUsedEmoji],
   )
+
+
+  const copyFunc = (emoji, result) => {
+    if (result) {
+      setCopyEmoji(emoji)
+    }
+  }
 
   return (
     <div className="emoji" onClick={handleClick}>
-      <CopyToClipboard text={showEmoji}>
-        <span>{showEmoji}</span>
+      <CopyToClipboard text={emoji} onCopy={copyFunc}>
+        <span className="emoji__icon">{emoji}</span>
       </CopyToClipboard>
-      <span className="emoji-text">{name}</span>
+      <span className="emoji__text">{name}</span>
     </div >
   );
 };
 
-const mapStateToProps = state => {
-  return { skin: state.skin };
-};
+Emoji.propTypes = {
+  emoji: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  addRecentlyUsedEmoji: PropTypes.func.isRequired,
+  setCopyEmoji: PropTypes.func.isRequired,
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addRecentlyUsedEmoji: recently => {
-      dispatch(addRecentlyUsed(recently));
-    },
+}
 
-  };
-};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Emoji);
+export default withFilteredEmoji(Emoji)

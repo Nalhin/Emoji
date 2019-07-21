@@ -1,71 +1,73 @@
-import React, { createRef, useState, useEffect, useCallback } from 'react';
-//import emojiData from "../../emoji.json";
-// import { Element } from 'react-scroll'
+import React from 'react';
 import './Layout.scss';
 import Group from './Group/Group';
-import Navbar from './Navbar/Navbar';
-import RecentlyUsed from './RecentlyUsed/RecentlyUsed';
-import { group } from '../../Module/GroupList';
+import Navbar from './Navbar/NavbarContainer';
+import RecentlyUsed from './RecentlyUsed/RecentlyUsedContainer';
+import Copied from './Copied/CopiedContainer';
+import PropTypes from 'prop-types';
+import { group } from '../../Module/data/groupList';
 import { debounce } from 'lodash';
-import { emojiArray } from '../../Module/test';
-import { connect } from 'react-redux';
+import { emojiArray } from '../../Module/data/emojiArray';
+import { refs } from '../../Module/data/refs';
 
-const refs = group.reduce((acc, group) => {
-  acc[group] = createRef();
-  return acc;
-}, []);
+const Layout = ({ search, copy }) => {
+    const [scroll, updateScroll] = React.useState('');
 
-const Layout = ({ search }) => {
-
-  const [scroll, updateScroll] = useState('');
-
-  const handleClick = group => {
-    refs[group].current.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    });
-  };
-
-  const scrollHandler = useCallback(() => {
-    const findClosest = element => {
-      return (
-        refs[element].current.offsetTop + refs[element].current.offsetHeight - 10 >
-        window.pageYOffset
-      );
+    const handleClick = group => {
+        refs[group].current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+        });
     };
-    updateScroll(group.find(findClosest));
-  }, []);
 
-  useEffect(() => {
-    scrollHandler();
-    window.addEventListener('scroll', debounce(scrollHandler, 200));
-    return () => {
-      window.removeEventListener('scroll', scrollHandler);
-    };
-  }, [scrollHandler]);
+    const scrollHandler = React.useCallback(() => {
+        const findClosest = element => {
+            return refs[element].current.offsetTop + refs[element].current.offsetHeight - 10 > window.pageYOffset;
+        };
+        updateScroll(group.find(findClosest));
+    }, []);
 
-  return (
-    <div className="layout">
-      <RecentlyUsed></RecentlyUsed>
-      <Navbar click={handleClick} scroll={scroll} />
+    React.useEffect(() => {
+        scrollHandler();
+        window.addEventListener('scroll', debounce(scrollHandler, 200));
+        return () => {
+            window.removeEventListener('scroll', scrollHandler);
+        };
+    }, [scrollHandler]);
 
-      {emojiArray.map((row, index) => (
-        <div ref={refs[group[index]]} key={group[index]}>
-          {row.find(emoji => emoji.name.includes(search)) ? (
-            <Group
-              key={group[index]}
-              group={group[index]}
-              row={row}
-              className="layout__groups"
-            />
-          ) : null}
+  
+
+
+    return (
+        <div className="layout">
+            <RecentlyUsed />
+            <Navbar click={handleClick} scroll={scroll} />
+
+            {emojiArray.map((row, index) => (
+                <div ref={refs[group[index]]} key={group[index]}>
+                    {row.find(emoji => emoji.name.includes(search)) ? (
+                        <Group
+                            key={group[index]}
+                            group={group[index]}
+                            row={row}
+                            search={search}
+                            className="layout__groups"
+                        />
+                    ) : null}
+                </div>
+            ))}
+            {copy ? <Copied copy={copy} /> : null}
         </div>
-      ))}
-    </div>
-  );
-};
-const mapStateToProps = state => {
-  return { search: state.search };
+    );
 };
 
-export default connect(mapStateToProps)(Layout);
+Layout.propTypes = {
+    search: PropTypes.string.isRequired,
+    copy: PropTypes.string,
+};
+
+Layout.defaultProps = {
+    copy: '',
+};
+
+export default Layout;

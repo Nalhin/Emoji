@@ -1,13 +1,19 @@
-.group {
+.emoji-group {
+ 
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 50px auto 0 auto;
   width: 60%;
 
-  .emoji-group {
-    display: grid;
-    grid-template-columns: repeat(16, 4rem);
-    grid-auto-rows: 70px;
+  &__title{
+    font-size:26px;
+    font-weight:bold;
+  }
+
+  &__emoji {
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
   }
 }

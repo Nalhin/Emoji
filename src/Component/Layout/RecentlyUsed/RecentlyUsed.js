@@ -1,39 +1,47 @@
 import React from 'react';
 import './RecentlyUsed.scss';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { deleteRecentlyUsed } from '../../../Module/actions/recentlyUsed'
 
-const RecentlyUsed = ({ recentlyUsed, deleteRecentlyUsedEmoji }) => {
+const RecentlyUsed = ({ recentlyUsed, deleteRecentlyUsedEmoji ,getRecently, setCopyEmoji}) => {
 
-  return (
-    <div className="recently-used">
-      <h1>Recently Used</h1>
-      <div className="emoji-div">{recentlyUsed.map(emoji =>
-        <CopyToClipboard text={emoji} key={emoji} className="recently-used__emoji">
-          <span key={emoji}>{emoji}</span>
-        </CopyToClipboard>
-      )}</div>
-      <button onClick={deleteRecentlyUsedEmoji}>Clear</button>
-    </div>
-  );
+    React.useEffect(() => {
+        const localEmoji = localStorage.getItem('emoji');
+        const localEmojiArray = localEmoji ? JSON.parse(localEmoji) : [];
+        getRecently(localEmojiArray);
+    }, [getRecently]);
+   
+    const copyFunc = (emoji, result) => {
+        if (result) {
+          setCopyEmoji(emoji)
+        }
+      }
+
+
+    return (
+        <div className="recently-used">
+            <h1 className="recently-used__title">Recently Used Emoji</h1>
+            <div className="recently-used__emoji-container">
+                {recentlyUsed.map(emoji => (
+                    <CopyToClipboard text={emoji} key={emoji} onCopy={copyFunc} className="recently-used__emoji">
+                        <span key={emoji}>{emoji}</span>
+                    </CopyToClipboard>
+                ))}
+            </div>
+            <button onClick={deleteRecentlyUsedEmoji} className="recently-used__button">Clear</button>
+        </div>
+    );
 };
 
-const mapStateToProps = state => {
-  return { recentlyUsed: [...new Set(state.recentlyUsed)] };
+RecentlyUsed.propTypes = {
+    recentlyUsed: PropTypes.arrayOf(PropTypes.string),
+    deleteRecentlyUsedEmoji: PropTypes.func.isRequired,
+    getRecently:PropTypes.func.isRequired,
+    setCopyEmoji:PropTypes.func.isRequired
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    deleteRecentlyUsedEmoji: () => {
-      localStorage.removeItem('emoji');
-      dispatch(deleteRecentlyUsed())
-    }
-  }
-}
+RecentlyUsed.defaultProps = {
+    recentlyUsed: [],
+};
 
-export default connect(
-  mapStateToProps, mapDispatchToProps
-)(RecentlyUsed);
-
-
+export default RecentlyUsed;

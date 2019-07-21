@@ -1,38 +1,31 @@
-import React, { useCallback } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import './Navbar.scss';
-import { group } from '../../../Module/GroupList';
-import { skinColor } from '../../../Module/skinColor';
-import { connect } from 'react-redux';
-import { setSkin } from '../../../Module/actions/skinColor';
-import { setSearch } from '../../../Module/actions/search';
+import { group } from '../../../Module/data/groupList';
+import { skinColor } from '../../../Module/data/skinColor';
 import { debounce } from 'lodash';
 
-const Navbar = ({ click, scroll, setSkin, skin, setSearch }) => {
-
-    const debouncedUpdate = debounce(value => {
+const Navbar = ({ click, scroll, skin, setSkin, setSearch }) => {
+    const debounceUpdate = debounce(value => {
         setSearch(value);
     }, 150);
 
-    const searchUpdate = useCallback(
-        (event) => {
-            debouncedUpdate(event.target.value)
+    const searchUpdate = React.useCallback(
+        event => {
+            debounceUpdate(event.target.value);
         },
-        [debouncedUpdate],
-    )
+        [debounceUpdate]
+    );
 
     return (
         <div className="navbar">
-            <div>
+            <div className="navbar__input">
                 <input onChange={searchUpdate} />
             </div>
             {group.map((group, index) => (
                 <div
                     onClick={click.bind(this, group)}
-                    className={
-                        scroll === group
-                            ? 'navbar__link navbar__link--active'
-                            : 'navbar__link'
-                    } //'navbar__link'+}
+                    className={scroll === group ? 'navbar__link navbar__link--active' : 'navbar__link'}
                     key={index}
                 >
                     {group}
@@ -42,38 +35,32 @@ const Navbar = ({ click, scroll, setSkin, skin, setSearch }) => {
                 <h1 className="navbar__skin-header">Skin Colors</h1>
                 {skinColor.map(element => (
                     <div
-                        className={
-                            element.name === skin.name
-                                ? 'navbar__skin navbar__skin--active'
-                                : 'navbar__skin'
-                        }
+                        className={element.name === skin.name ? 'navbar__skin navbar__skin--active' : 'navbar__skin'}
                         onClick={setSkin.bind(this, element)}
                         style={{ background: element.color }}
                         key={element.name}
                     />
                 ))}
             </div>
-            <p>Emoji Data Version: 12.0</p>
+            <p className="navbar__footer">Emoji Data Version: 12.0</p>
         </div>
     );
 };
 
-const mapStateToProps = state => {
-    return { skin: state.skin };
+Navbar.propTypes = {
+    click: PropTypes.func.isRequired,
+    scroll: PropTypes.string,
+    skin: PropTypes.shape({
+        unicode: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        color: PropTypes.string.isRequired,
+    }).isRequired,
+    setSkin: PropTypes.func.isRequired,
+    setSearch: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        setSkin: skin => {
-            dispatch(setSkin(skin));
-        },
-        setSearch: value => {
-            dispatch(setSearch(value));
-        },
-    };
+Navbar.defaultProps = {
+    scroll: 'Smileys & Emotion',
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Navbar);
+export default Navbar;

@@ -1,36 +1,38 @@
 .navbar {
-  position: fixed;
-  top: 0;
-  background: lightblue;
-
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-
-  &__link {
-    &--active {
-      background: red;
-    }
-  }
-
-  &__skin-header {
-    margin-top: 50px;
-    font-weight: bold;
-    font-size: 20px;
-  }
-
-  &__skin-container {
+    position: fixed;
+    top: 0;
+    background: lightblue;
+    width: 15%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-  }
-
-  &__skin {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-
-    &--active {
-      border: 5px red solid;
+    align-items: center;
+    &__link {
+        &--active {
+            background: red;
+        }
     }
-  }
+
+    &__skin-header {
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    &__skin-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__skin {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+
+        &--active {
+            border: 5px red solid;
+        }
+    }
+    &__footer {
+        justify-self: flex-end;
+    }
 }

@@ -8,3 +8,7 @@ export const SET_SEARCH = 'SET_SEARCH';
 export const GET_RECENTLY_USED = 'GET_RECENTLY_USED';
 export const ADD_RECENTLY_USED = 'ADD_RECENTLY_USED';
 export const DELETE_RECENTLY_USED = 'DELETE_RECENTLY_USED';
+
+//copy reducer
+export const SET_COPY = 'SET_COPY';
+export const REMOVE_COPY = 'REMOVE_COPY';

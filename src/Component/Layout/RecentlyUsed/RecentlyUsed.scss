@@ -1,14 +1,45 @@
 .recently-used {
-    display: flex;
-    flex-wrap: wrap;
-    // flex-direction: column;
+    width: 60%;
     margin: 0 auto;
-    width: 20%;
-    overflow: auto;
-    flex-flow: column wrap;
-    text-align: center;
-    flex-wrap: nowrap;
+
+    &__emoji-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    &__title {
+        font-weight: bold;
+        font-size: 26px;
+    }
     &__emoji {
         cursor: pointer;
+        font-size: 2rem;
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow:hidden;
+        &:hover {
+            background: #fdfdb5;
+        }
+    }
+    &__button {
+        margin-top:10px;
+        padding:20px 15px;
+        background: #fdfdb5;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        outline-style: none;
+        display: inline-block;
+        box-sizing: border-box;
+        font-weight:bold;
+        font-size:20px;
+        width:100%;
+        border: 1px black solid;
+        &:hover {
+            background:#FFFFE0;
+        }
     }
 }

@@ -8,8 +8,6 @@ import { group } from '../../../Module/data/groupList';
 import { skinColor } from '../../../Module/data/skinColor';
 import DropDownMenu from './DropDownMenu/DropDownMenu';
 
-
-
 const Navbar = ({ click, scroll, skin, setSkin, setSearch }) => {
     const debounceUpdate = debounce(value => {
         setSearch(value);
@@ -45,12 +43,10 @@ const Navbar = ({ click, scroll, skin, setSkin, setSearch }) => {
                         onChange={searchUpdate}
                     />
                     <FaSearch className="navbar__search-icon" />
-                    
                 </div>
                 <DropDownMenu skinColor={skinColor} setSkin={setSkin} skin={skin} />
             </div>
- 
-        </nav >
+        </nav>
     );
 };
 

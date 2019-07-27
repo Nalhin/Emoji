@@ -16,9 +16,9 @@ const Copied = ({ copy, removeCopyEmoji }) => {
     return <div className="copied">Copied {copy}</div>;
 };
 
-Copied.propTypes={
-    removeCopyEmoji:PropTypes.func.isRequired,
-    copy:PropTypes.string.isRequired
-}
+Copied.propTypes = {
+    removeCopyEmoji: PropTypes.func.isRequired,
+    copy: PropTypes.string.isRequired,
+};
 
 export default Copied;

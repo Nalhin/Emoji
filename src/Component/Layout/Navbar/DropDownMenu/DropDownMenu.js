@@ -35,18 +35,20 @@ const DropDownMenu = ({ skinColor, setSkin, skin }) => {
     );
 };
 
-DropDownMenu.propTypes={
-    skinColor: PropTypes.arrayOf(PropTypes.shape({
-        unicode: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        color: PropTypes.string.isRequired,
-    })).isRequired,
+DropDownMenu.propTypes = {
+    skinColor: PropTypes.arrayOf(
+        PropTypes.shape({
+            unicode: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            color: PropTypes.string.isRequired,
+        })
+    ).isRequired,
     skin: PropTypes.shape({
         unicode: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         color: PropTypes.string.isRequired,
     }).isRequired,
     setSkin: PropTypes.func.isRequired,
-}
+};
 
 export default DropDownMenu;

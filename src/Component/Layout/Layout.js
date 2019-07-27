@@ -12,8 +12,6 @@ import { group } from '../../Module/data/groupList';
 import { emojiArray } from '../../Module/data/emojiArray';
 import { refs } from '../../Module/data/refs';
 
-
-
 const Layout = ({ search, copy }) => {
     const [scroll, updateScroll] = React.useState('');
     const offset = 96;
@@ -66,7 +64,11 @@ const Layout = ({ search, copy }) => {
                     ) : null}
                 </div>
             ))}
-            <footer className="layout__footer"><a href={url} target="_blank" rel="noopener noreferrer" >Emoji Data Version: {version}</a></footer>
+            <footer className="layout__footer">
+                <a href={url} className="footer__link" target="_blank" rel="noopener noreferrer">
+                    Emoji Data Version: {version}
+                </a>
+            </footer>
             {copy ? <Copied copy={copy} /> : null}
         </div>
     );

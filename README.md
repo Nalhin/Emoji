@@ -18,6 +18,11 @@ React, Redux, node.js website parser(emojiParser.js).
 #### BEM.
 #### Prop Types.
 
+## Data
+
+emojiParser.js allows you to parse data directly from https://unicode.org/Public/emoji/12.0/emoji-test.txt and save it to local json file. (Remember to change folder names!)
+
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

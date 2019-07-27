@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import './DropDownMenu.scss';
 
@@ -14,7 +15,6 @@ const DropDownMenu = ({ skinColor, setSkin, skin }) => {
         'skin-drop-down__select': true,
         'skin-drop-down__select--hide': !isDropDownOpen,
     });
-
     return (
         <div className="skin-drop-down">
             <div className="skin-drop-down__header" onClick={dropDownOnClick}>
@@ -34,5 +34,19 @@ const DropDownMenu = ({ skinColor, setSkin, skin }) => {
         </div>
     );
 };
+
+DropDownMenu.propTypes={
+    skinColor: PropTypes.arrayOf(PropTypes.shape({
+        unicode: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        color: PropTypes.string.isRequired,
+    })).isRequired,
+    skin: PropTypes.shape({
+        unicode: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        color: PropTypes.string.isRequired,
+    }).isRequired,
+    setSkin: PropTypes.func.isRequired,
+}
 
 export default DropDownMenu;

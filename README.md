@@ -4,7 +4,7 @@ A simple website which allows you to copy emoji to clipboard.
 
 # Stack
 
-React, Redux, node.js website parser(emojiParser.js).
+React, Redux, node.js website parser(emojiParser.js), Sass.
 
 # What I learned
 

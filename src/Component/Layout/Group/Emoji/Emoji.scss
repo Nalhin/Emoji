@@ -14,10 +14,11 @@
         justify-content: center;
     }
     &__text {
+        
         font-size: 1rem;
         visibility: hidden;
-        width: 120px;
         background-color: black;
+        padding:5px;
         color: #fff;
         text-align: center;
         border-radius: 6px;

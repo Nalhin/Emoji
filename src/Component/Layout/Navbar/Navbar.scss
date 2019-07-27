@@ -9,17 +9,20 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
-
+    flex-flow: row wrap;
+    min-width:320px;
 
     &__position {
+        margin:0 auto;
         display: flex;
         flex-direction: row;
         align-items: center;
-        flex-wrap: wrap;
-        height: 3rem;
+        flex-wrap:wrap;
+        justify-content: space-around;
     }
 
     &__controls {
+        margin:0 auto;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -50,7 +53,7 @@
     }
 
     &__link {
-        font-size: 18px;
+        font-size: 17px;
         text-align: center;
         border-radius: 3px;
         margin: 0 6px;
@@ -67,18 +70,19 @@
 
 @media only screen and (max-width: 640px) {
     .navbar {
-        &__link {
-            margin: 0 3px;
-            font-size: 14px;
+        height:6rem;
+        &_position{
+
         }
+        
     }
 }
 
-@media only screen and (max-width: 460px) {
-    .navbar {
-        &__link {
-            margin: 0 2px;
-            font-size: 0.6em;
-        }
-    }
-}
+// @media only screen and (max-width: 460px) {
+//     .navbar {
+//         &__link {
+//             margin: 0 2px;
+//             font-size: 0.6em;
+//         }
+//     }
+// }

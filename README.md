@@ -8,15 +8,15 @@ React, Redux, node.js website parser(emojiParser.js).
 
 # What I learned
 
-Scrapping and parsing simple websites with node.js.
-Parsing files in node.js.
-React refs.
-Basics of Redux.
-Local storage.
-Scss.
-Debouncing and Throttling.
-BEM.
-Prop Types.
+#### Scrapping and parsing simple websites with node.js.
+#### Parsing files in node.js.
+#### React refs.
+#### Basics of Redux.
+#### Local storage.
+#### Scss.
+#### Debouncing and Throttling.
+#### BEM.
+#### Prop Types.
 
 ## License
 

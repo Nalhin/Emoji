@@ -1,10 +1,10 @@
-// .layout{
-//     // &__copy{
-//     //     position:fixed;
-//     //     bottom:0;
-//     //     left:50%;
-//     //     background:red;
-//     //     width:100px;
-//     //     height:100px;
-//     // }
-// }
+.layout{
+   &__footer{
+     margin: 20px auto;
+     text-align:center;
+     >a{
+       text-decoration:none;
+       color:inherit;
+     }
+   }
+}

@@ -1,5 +1,6 @@
-import RecentlyUsed from './RecentlyUsed';
 import { connect } from 'react-redux';
+
+import RecentlyUsed from './RecentlyUsed';
 import { deleteRecentlyUsed } from '../../../Module/actions/recentlyUsed';
 import { getRecentlyUsed } from '../../../Module/actions/recentlyUsed';
 import { setCopy } from '../../../Module/actions/copy';
@@ -18,8 +19,8 @@ const mapDispatchToProps = dispatch => {
             dispatch(getRecentlyUsed(localEmojiArray));
         },
         setCopyEmoji: emoji => {
-          dispatch(setCopy(emoji));
-      },
+            dispatch(setCopy(emoji));
+        },
     };
 };
 

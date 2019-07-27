@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { debounce } from 'lodash';
+import { FaSearch } from 'react-icons/fa';
+
 import './Navbar.scss';
 import { group } from '../../../Module/data/groupList';
 import { skinColor } from '../../../Module/data/skinColor';
-import { debounce } from 'lodash';
+import DropDownMenu from './DropDownMenu/DropDownMenu';
+
+
 
 const Navbar = ({ click, scroll, skin, setSkin, setSearch }) => {
     const debounceUpdate = debounce(value => {
@@ -18,32 +23,34 @@ const Navbar = ({ click, scroll, skin, setSkin, setSearch }) => {
     );
 
     return (
-        <div className="navbar">
-            <div className="navbar__input">
-                <input onChange={searchUpdate} />
-            </div>
-            {group.map((group, index) => (
-                <div
-                    onClick={click.bind(this, group)}
-                    className={scroll === group ? 'navbar__link navbar__link--active' : 'navbar__link'}
-                    key={index}
-                >
-                    {group}
-                </div>
-            ))}
-            <div className="navbar__skin-container">
-                <h1 className="navbar__skin-header">Skin Colors</h1>
-                {skinColor.map(element => (
+        <nav className="navbar">
+            <div className="navbar__position">
+                {group.map((group, index) => (
                     <div
-                        className={element.name === skin.name ? 'navbar__skin navbar__skin--active' : 'navbar__skin'}
-                        onClick={setSkin.bind(this, element)}
-                        style={{ background: element.color }}
-                        key={element.name}
-                    />
+                        onClick={click.bind(this, group)}
+                        className={
+                            scroll === group ? 'navbar__link navbar__link--active' : 'navbar__link'
+                        }
+                        key={index}
+                    >
+                        {group.split(' ')[0]}
+                    </div>
                 ))}
             </div>
-            <p className="navbar__footer">Emoji Data Version: 12.0</p>
-        </div>
+            <div className="navbar__controls">
+                <div className="navbar__input-container">
+                    <input
+                        className="navbar__input"
+                        placeholder="Search..."
+                        onChange={searchUpdate}
+                    />
+                    <FaSearch className="navbar__search-icon" />
+                    
+                </div>
+                <DropDownMenu skinColor={skinColor} setSkin={setSkin} skin={skin} />
+            </div>
+ 
+        </nav >
     );
 };
 

@@ -1,5 +1,6 @@
 import Navbar from './Navbar';
 import { connect } from 'react-redux';
+
 import { setSkin } from '../../../Module/actions/skinColor';
 import { setSearch } from '../../../Module/actions/search';
 

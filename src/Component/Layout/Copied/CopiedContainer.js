@@ -1,6 +1,7 @@
 import Copied from './Copied';
 import { connect } from 'react-redux';
-import {removeCopy} from '../../../Module/actions/copy'
+
+import { removeCopy } from '../../../Module/actions/copy';
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -10,4 +11,7 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(null,mapDispatchToProps)(Copied);
+export default connect(
+    null,
+    mapDispatchToProps
+)(Copied);

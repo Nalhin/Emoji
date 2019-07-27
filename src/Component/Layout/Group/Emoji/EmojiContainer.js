@@ -1,5 +1,6 @@
-import Emoji from './Emoji';
 import { connect } from 'react-redux';
+
+import Emoji from './Emoji';
 import { addRecentlyUsed } from '../../../../Module/actions/recentlyUsed';
 import { setCopy } from '../../../../Module/actions/copy';
 
@@ -15,7 +16,6 @@ const mapDispatchToProps = dispatch => {
         setCopyEmoji: emoji => {
             dispatch(setCopy(emoji));
         },
-
     };
 };
 

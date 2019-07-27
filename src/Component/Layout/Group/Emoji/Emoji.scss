@@ -1,9 +1,9 @@
+@import './../../../../globalStyleVariables.scss';
+
 .emoji {
- 
     width: 4rem;
     height: 4rem;
     cursor: pointer;
-    // border: 1px black solid;
     overflow: hidden;
 
     &__icon {
@@ -11,6 +11,7 @@
         align-items: center;
         font-size: 3rem;
         text-align: center;
+        justify-content: center;
     }
     &__text {
         font-size: 1rem;
@@ -24,8 +25,8 @@
         z-index: 1;
     }
 
-    &:hover{
-      background:#fdfdb5;
+    &:hover {
+        background: $main-color;
     }
 
     &:hover &__text {

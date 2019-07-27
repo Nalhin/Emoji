@@ -1,38 +1,74 @@
+@import '../../../globalStyleVariables.scss';
 .navbar {
-    position: fixed;
+    position: sticky;
     top: 0;
-    background: lightblue;
-    width: 15%;
-    height: 100%;
+    width: 100%;
+    background: $navbar-color;
+    height: 5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    &__link {
-        &--active {
-            background: red;
-        }
+    margin-bottom: 20px;
+    min-width: 320px;
+
+    &__position {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        height: 3rem;
     }
 
-    &__skin-header {
-        font-weight: bold;
+    &__controls {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 80%;
+    }
+
+    &__input-container {
+        margin: 2px auto;
+        width: 100%;
+        position: relative;
         font-size: 20px;
     }
+    &__input {
+        display: block;
+        margin: 0 auto;
+        border-radius: 1px;
+        width: calc(100% - 38px);
+        padding: 3px 25px 3px 5px;
 
-    &__skin-container {
-        display: flex;
-        flex-direction: column;
-    }
-
-    &__skin {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-
-        &--active {
-            border: 5px red solid;
+        &:focus {
+            outline: none;
         }
     }
-    &__footer {
-        justify-self: flex-end;
+    &__search-icon {
+        position: absolute;
+        top: 4px;
+        right: 6px;
+    }
+
+    &__link {
+        font-size: 0.8em;
+        text-align: center;
+        border-radius: 3px;
+        margin: 0 2px;
+        cursor: pointer;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &--active {
+            background: $main-color;
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .navbar {
+        &__link {
+            font-size: 0.6em;
+        }
     }
 }

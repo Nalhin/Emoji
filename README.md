@@ -1,10 +1,34 @@
-# Emoji Picker Website + Parser
+# Emoji
 
-A simple website which allows you to copy emoji to clipboard.
+A website that allows users to find and copy emoji directly to their clipboard.
+
+# Requirements
+
+Install node package manager [npm](https://www.npmjs.com/).
+You should be able to run the following commands.
+
+```bash
+node --version
+npm --version
+```
+
+# Installation
+
+```bash
+git clone https://github.com/Nalhin/emoji
+npm install
+node emojiParser.js
+```
+
+#  Start
+
+```bash
+npm run start
+```
 
 # Stack
 
-React, Redux, node.js website parser(emojiParser.js), Sass.
+React, Redux, node.js, Sass.
 
 # What I learned
 
@@ -20,7 +44,9 @@ React, Redux, node.js website parser(emojiParser.js), Sass.
 
 ## Data
 
-emojiParser.js allows you to parse data directly from https://unicode.org/Public/emoji/12.0/emoji-test.txt and save it to local json file. (Remember to change folder names!)
+Emoji Picker uses data from [Unicode](https://unicode.org/Public/emoji/12.0/emoji-test.txt).
+
+emojiParser.js allows you to parse data directly from that website and save it to local json file. (Remember to change folder names!)
 
 ## License
 

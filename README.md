@@ -17,6 +17,7 @@ npm --version
 
 ```bash
 git clone https://github.com/Nalhin/emoji
+cd emoji
 npm install
 node emojiParser.js
 ```
@@ -27,7 +28,7 @@ node emojiParser.js
 npm run start
 ```
 
-## Data
+# Data
 
 Emoji Picker uses data from [Unicode](https://unicode.org/Public/emoji/12.0/emoji-test.txt).
 
@@ -51,6 +52,6 @@ React, Redux, node.js, Sass.
 
 
 
-## License
+# License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
